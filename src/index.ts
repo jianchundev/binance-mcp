@@ -4,10 +4,13 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from "zod";
 import axios from "axios";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
 const BASE_URL = "https://api.binance.com";
 
-const proxyURL = process.env.HTTP_PROXY || process.env.HTTPS_PROXY;
+// 支持多种代理类型
+const httpProxyURL = process.env.HTTP_PROXY || process.env.HTTPS_PROXY;
+const socksProxyURL = process.env.SOCKS_PROXY || process.env.SOCKS5_PROXY;
 
 function registerTools(server: McpServer) {
     // Order Book
@@ -24,7 +27,7 @@ function registerTools(server: McpServer) {
                         symbol: args.symbol,
                         limit: args.limit
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -52,7 +55,7 @@ function registerTools(server: McpServer) {
                         symbol: args.symbol,
                         limit: args.limit
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -85,7 +88,7 @@ function registerTools(server: McpServer) {
                     headers: {
                         "X-MBX-APIKEY": process.env.BINANCE_API_KEY || ""
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -119,7 +122,7 @@ function registerTools(server: McpServer) {
                         endTime: args.endTime,
                         limit: args.limit
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -155,7 +158,7 @@ function registerTools(server: McpServer) {
                         timeZone: args.timeZone,
                         limit: args.limit
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -191,7 +194,7 @@ function registerTools(server: McpServer) {
                         timeZone: args.timeZone,
                         limit: args.limit
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -217,7 +220,7 @@ function registerTools(server: McpServer) {
                     params: {
                         symbol: args.symbol
                     },
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -249,7 +252,7 @@ function registerTools(server: McpServer) {
 
                 const response = await axios.get(`${BASE_URL}/api/v3/ticker/24hr`, {
                     params,
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -285,7 +288,7 @@ function registerTools(server: McpServer) {
 
                 const response = await axios.get(`${BASE_URL}/api/v3/ticker/tradingDay`, {
                     params,
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -317,7 +320,7 @@ function registerTools(server: McpServer) {
 
                 const response = await axios.get(`${BASE_URL}/api/v3/ticker/price`, {
                     params,
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -349,7 +352,7 @@ function registerTools(server: McpServer) {
 
                 const response = await axios.get(`${BASE_URL}/api/v3/ticker/bookTicker`, {
                     params,
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -385,7 +388,7 @@ function registerTools(server: McpServer) {
 
                 const response = await axios.get(`${BASE_URL}/api/v3/ticker`, {
                     params,
-                    proxy: getProxy(),
+                    ...getProxyConfig(),
                 });
                 return {
                     content: [{ type: "text", text: JSON.stringify(response.data, null, 2) }]
@@ -400,15 +403,34 @@ function registerTools(server: McpServer) {
     );
 }
 
-function getProxy():any {
-    const proxy: any = {}
-    if (proxyURL) {
-        const urlInfo = new URL(proxyURL);
-        proxy.host = urlInfo.hostname;
-        proxy.port = urlInfo.port;
-        proxy.protocol = urlInfo.protocol.replace(":", "");
+function getProxyConfig(): any {
+    // 优先使用SOCKS5代理
+    if (socksProxyURL) {
+        try {
+            const agent = new SocksProxyAgent(socksProxyURL);
+            return { httpsAgent: agent, httpAgent: agent };
+        } catch (error) {
+            console.error(`Failed to create SOCKS proxy agent: ${error}`);
+        }
     }
-    return proxy
+    
+    // 回退到HTTP代理
+    if (httpProxyURL) {
+        try {
+            const urlInfo = new URL(httpProxyURL);
+            return {
+                proxy: {
+                    host: urlInfo.hostname,
+                    port: parseInt(urlInfo.port) || (urlInfo.protocol === 'https:' ? 443 : 80),
+                    protocol: urlInfo.protocol.replace(":", "")
+                }
+            };
+        } catch (error) {
+            console.error(`Failed to parse HTTP proxy URL: ${error}`);
+        }
+    }
+    
+    return {};
 }
 
 async function main() {
@@ -422,7 +444,7 @@ async function main() {
     let transport = new StdioServerTransport();
     await server.connect(transport);
     const cleanup = async () => {
-        console.log("MCP service has been closed");
+        // MCP service closed (no console output for proper MCP protocol)
         await transport.close();
         process.exit(0);
     };
@@ -430,11 +452,11 @@ async function main() {
     process.on("SIGINT", cleanup);
     process.on("SIGTERM", cleanup);
 
-    console.log("MCP service has started");
+    // MCP service started (no console output for proper MCP protocol)
 }
 
 function handleError(error: Error) {
-    console.error("An error occurred:", error);
+    // Error occurred (no console output for proper MCP protocol)
     process.exit(1);
 }
 

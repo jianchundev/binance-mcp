@@ -103,6 +103,55 @@ After configuration, the Binance market data tools will be automatically availab
 }
 ```
 
+## Proxy Configuration
+
+This MCP service supports both SOCKS5 and HTTP/HTTPS proxies to help users access Binance API from restricted networks.
+
+### SOCKS5 Proxy (Recommended)
+
+Set environment variable:
+
+```bash
+# Linux/macOS
+export SOCKS_PROXY="socks5://127.0.0.1:1080"
+
+# Windows
+set SOCKS_PROXY=socks5://127.0.0.1:1080
+```
+
+### HTTP/HTTPS Proxy
+
+Set environment variable:
+
+```bash
+# Linux/macOS
+export HTTP_PROXY="http://127.0.0.1:8080"
+
+# Windows
+set HTTP_PROXY=http://127.0.0.1:8080
+```
+
+### MCP Configuration with Proxy
+
+```json
+{
+  "mcpServers": {
+    "binance": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@snjyor/binance-mcp@latest"
+      ],
+      "env": {
+        "SOCKS_PROXY": "socks5://127.0.0.1:1080"
+      }
+    }
+  }
+}
+```
+
+For detailed proxy configuration instructions, see [PROXY_CONFIG.md](PROXY_CONFIG.md).
+
 ## Usage Examples
 
 Here are some usage examples:
