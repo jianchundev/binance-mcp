@@ -8,7 +8,9 @@
     "files": [
         "dist",
         "LICENSE",
-        "README.md"
+        "README.md",
+        "NOTICE",
+        "PROXY_CONFIG.md"
     ],
     "scripts": {
         "dev": "node --loader ts-node/esm src/index.ts",
@@ -30,7 +32,7 @@
         "crypto-api"
     ],
     "author": "snjyor",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.13.3",
         "axios": "^1.10.0",
@@ -46,13 +48,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/snjyor/binance-mcp.git"
+        "url": "https://github.com/YOUR_USERNAME/binance-mcp.git"
     },
     "publishConfig": {
         "access": "public"
     },
     "bugs": {
-        "url": "https://github.com/snjyor/binance-mcp/issues"
+        "url": "https://github.com/YOUR_USERNAME/binance-mcp/issues"
     },
-    "homepage": "https://github.com/snjyor/binance-mcp#readme"
+    "homepage": "https://github.com/YOUR_USERNAME/binance-mcp#readme"
 }

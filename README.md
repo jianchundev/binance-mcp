@@ -1,4 +1,5 @@
 # Binance Cryptocurrency MCP
+
 [![smithery badge](https://smithery.ai/badge/@snjyor/binance-mcp-data)](https://smithery.ai/server/@snjyor/binance-mcp-data)
 
 <a href="https://glama.ai/mcp/servers/@snjyor/binance-mcp">
@@ -6,6 +7,24 @@
 </a>
 
 [Model Context Protocol](https://modelcontextprotocol.io) service for accessing Binance cryptocurrency market data.
+
+## 📄 License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🔄 Fork Notice
+
+This is a fork of the original [binance-mcp](https://github.com/snjyor/binance-mcp) project by [snjyor](https://github.com/snjyor).
+
+**Major enhancements in this fork:**
+- ✅ Added SOCKS5 proxy support
+- ✅ Enhanced proxy configuration options
+- ✅ Improved documentation with copy-paste examples
+- ✅ Better MCP configuration compatibility
+
+## 🤝 Contributing
+
+This fork maintains the same Apache 2.0 license as the original project. All contributions are welcome!
 
 ## Overview
 
