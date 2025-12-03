@@ -68,7 +68,18 @@ Through this MCP service, you can obtain the following information:
 Use npx to run the MCP service directly from GitHub:
 
 ```bash
+# Method 1: Direct from GitHub (recommended)
 npx -y git+https://github.com/jianchundev/binance-mcp.git
+
+# Method 2: Alternative for Windows compatibility
+npx -y https://github.com/jianchundev/binance-mcp.git
+
+# Method 3: Clone and run locally (most reliable)
+git clone https://github.com/jianchundev/binance-mcp.git
+cd binance-mcp
+npm install
+npm run build
+npm start
 ```
 
 In Cursor IDE:
@@ -79,6 +90,9 @@ In Cursor IDE:
    - Name: `binance`
    - Type: `command`
    - Command: `npx -y git+https://github.com/jianchundev/binance-mcp.git`
+   
+   **If the above doesn't work on Windows, use:**
+   - Command: `npx -y https://github.com/jianchundev/binance-mcp.git`
 
 **Project Installation**
 
@@ -92,6 +106,21 @@ Add a `.cursor/mcp.json` file to your project:
       "args": [
         "-y",
         "git+https://github.com/jianchundev/binance-mcp.git"
+      ]
+    }
+  }
+}
+```
+
+**Windows Alternative:**
+```json
+{
+  "mcpServers": {
+    "binance": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "https://github.com/jianchundev/binance-mcp.git"
       ]
     }
   }
@@ -235,6 +264,41 @@ npm start
 - 🔄 Always get the latest version
 - 📝 Full source code transparency
 - ⚡ Faster updates and fixes
+
+## 🔧 **Troubleshooting**
+
+### Windows npx Issues
+If you encounter `'binance-mcp' is not recognized` error on Windows:
+
+1. **Try alternative URL format:**
+   ```bash
+   npx -y https://github.com/jianchundev/binance-mcp.git
+   ```
+
+2. **Use local installation:**
+   ```bash
+   git clone https://github.com/jianchundev/binance-mcp.git
+   cd binance-mcp
+   npm install
+   npm run build
+   ```
+
+3. **Update MCP configuration to use local path:**
+   ```json
+   {
+     "mcpServers": {
+       "binance": {
+         "command": "node",
+         "args": ["C:\\path\\to\\binance-mcp\\dist\\index.js"]
+       }
+     }
+   }
+   ```
+
+### Proxy Connection Issues
+- Verify your SOCKS5 proxy is running on the specified port
+- Check firewall settings
+- Try different proxy ports (7890, 1081, 10808)
 
 ## Proxy Configuration
 

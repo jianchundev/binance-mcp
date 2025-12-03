@@ -19,6 +19,22 @@
 }
 ```
 
+**Windows兼容性配置：**
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "https://github.com/jianchundev/binance-mcp.git"
+  ],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1080"
+  }
+}
+```
+
 ### 常见代理端口配置
 
 **Clash/V2Ray (端口7890):**
@@ -34,12 +50,38 @@
 }
 ```
 
+**Windows版本（Clash/V2Ray）：**
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": ["-y", "https://github.com/jianchundev/binance-mcp.git"],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:7890"
+  }
+}
+```
+
 **Shadowsocks (端口1081):**
 ```json
 {
   "key": "binance",
   "command": "npx",
   "args": ["-y", "git+https://github.com/jianchundev/binance-mcp.git"],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1081"
+  }
+}
+```
+
+**Windows版本（Shadowsocks）：**
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": ["-y", "https://github.com/jianchundev/binance-mcp.git"],
   "approvalPolicy": "always",
   "env": {
     "SOCKS_PROXY": "socks5://127.0.0.1:1081"
