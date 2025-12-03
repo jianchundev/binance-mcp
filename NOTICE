@@ -1,9 +1,10 @@
 Binance Cryptocurrency MCP
 Copyright 2024 snjyor (Original Author)
-Copyright 2024 [Your Name] (Fork Maintainer)
+Copyright 2024 jianchundev (Fork Maintainer)
 
 This project is a fork of the original binance-mcp project.
 Original repository: https://github.com/snjyor/binance-mcp
+Fork repository: https://github.com/jianchundev/binance-mcp
 
 The original project was licensed under the Apache License, Version 2.0.
 This fork maintains the same license and complies with all Apache 2.0 requirements.

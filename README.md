@@ -68,7 +68,7 @@ Through this MCP service, you can obtain the following information:
 Use npx to run the MCP service:
 
 ```bash
-npx -y @snjyor/binance-mcp@latest
+npx -y @jianchundev/binance-mcp@latest
 ```
 
 In Cursor IDE:
@@ -78,7 +78,7 @@ In Cursor IDE:
 3. Fill in the form:
    - Name: `binance`
    - Type: `command`
-   - Command: `npx -y @snjyor/binance-mcp@latest`
+   - Command: `npx -y @jianchundev/binance-mcp@latest`
 
 **Project Installation**
 
@@ -91,7 +91,7 @@ Add a `.cursor/mcp.json` file to your project:
       "command": "npx",
       "args": [
         "-y",
-        "@snjyor/binance-mcp@latest"
+        "@jianchundev/binance-mcp@latest"
       ]
     }
   }
@@ -159,7 +159,7 @@ After configuration, the Binance market data tools will be automatically availab
   "command": "npx",
   "args": [
     "-y",
-    "@snjyor/binance-mcp@latest"
+    "@jianchundev/binance-mcp@latest"
   ],
   "approvalPolicy": "always"
 }
@@ -192,7 +192,7 @@ For users who need proxy support, use this ready-to-use configuration:
   "command": "npx",
   "args": [
     "-y",
-    "@snjyor/binance-mcp@latest"
+    "@jianchundev/binance-mcp@latest"
   ],
   "approvalPolicy": "always",
   "env": {

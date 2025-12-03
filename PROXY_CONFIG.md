@@ -10,7 +10,7 @@
   "command": "npx",
   "args": [
     "-y",
-    "@snjyor/binance-mcp@latest"
+    "@jianchundev/binance-mcp@latest"
   ],
   "approvalPolicy": "always",
   "env": {
@@ -26,7 +26,7 @@
 {
   "key": "binance",
   "command": "npx",
-  "args": ["-y", "@snjyor/binance-mcp@latest"],
+  "args": ["-y", "@jianchundev/binance-mcp@latest"],
   "approvalPolicy": "always",
   "env": {
     "SOCKS_PROXY": "socks5://127.0.0.1:7890"
@@ -39,7 +39,7 @@
 {
   "key": "binance",
   "command": "npx",
-  "args": ["-y", "@snjyor/binance-mcp@latest"],
+  "args": ["-y", "@jianchundev/binance-mcp@latest"],
   "approvalPolicy": "always",
   "env": {
     "SOCKS_PROXY": "socks5://127.0.0.1:1081"

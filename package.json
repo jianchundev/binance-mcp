@@ -1,7 +1,7 @@
 {
-    "name": "@snjyor/binance-mcp",
+    "name": "@jianchundev/binance-mcp",
     "version": "1.0.1",
-    "description": "Binance Cryptocurrency Market Data MCP Service",
+    "description": "Binance Cryptocurrency Market Data MCP Service with SOCKS5 Proxy Support",
     "main": "dist/index.js",
     "bin": "dist/index.js",
     "type": "module",
@@ -31,7 +31,7 @@
         "claude",
         "crypto-api"
     ],
-    "author": "snjyor",
+    "author": "jianchundev",
     "license": "Apache-2.0",
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.13.3",
@@ -48,13 +48,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/YOUR_USERNAME/binance-mcp.git"
+        "url": "https://github.com/jianchundev/binance-mcp.git"
     },
     "publishConfig": {
         "access": "public"
     },
     "bugs": {
-        "url": "https://github.com/YOUR_USERNAME/binance-mcp/issues"
+        "url": "https://github.com/jianchundev/binance-mcp/issues"
     },
-    "homepage": "https://github.com/YOUR_USERNAME/binance-mcp#readme"
+    "homepage": "https://github.com/jianchundev/binance-mcp#readme"
 }
