@@ -79,6 +79,33 @@ Add a `.cursor/mcp.json` file to your project:
 }
 ```
 
+**Alternative MCP Configuration**
+
+Some MCP clients use a different configuration format:
+
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@snjyor/binance-mcp@latest"
+  ],
+  "approvalPolicy": "always"
+}
+```
+
+**Configuration Options**
+
+- `key`: Unique identifier for the MCP service
+- `command`: Command to run the service
+- `args`: Arguments passed to the command
+- `approvalPolicy`:
+  - `"always"` - Auto-approve all tool calls
+  - `"prompt"` - Ask for approval before each tool call
+  - `"never"` - Never auto-approve
+- `env`: Environment variables (for proxy configuration)
+
 **Usage**
 
 After configuration, the Binance market data tools will be automatically available to Cursor AI agents:
@@ -88,6 +115,8 @@ After configuration, the Binance market data tools will be automatically availab
 3. You can explicitly ask agents to use these tools
 
 ## Using in Other MCP-Compatible Environments
+
+### Standard MCP Configuration
 
 ```json
 {
@@ -100,6 +129,69 @@ After configuration, the Binance market data tools will be automatically availab
       ]
     }
   }
+}
+```
+
+### Alternative Configuration Format
+
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@snjyor/binance-mcp@latest"
+  ],
+  "approvalPolicy": "always"
+}
+```
+
+### With Proxy Configuration
+
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@snjyor/binance-mcp@latest"
+  ],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1080"
+  }
+}
+```
+
+### 🚀 Quick Start with SOCKS5 Proxy (Copy & Paste)
+
+For users who need proxy support, use this ready-to-use configuration:
+
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@snjyor/binance-mcp@latest"
+  ],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1080"
+  }
+}
+```
+
+**Common SOCKS5 Proxy Ports:**
+- `1080` - Default SOCKS5 port
+- `7890` - Common alternative (Clash, V2Ray)
+- `1081` - Alternative port
+- `10808` - Some proxy tools
+
+**To use a different port, simply change the port number:**
+```json
+"env": {
+  "SOCKS_PROXY": "socks5://127.0.0.1:7890"
 }
 ```
 

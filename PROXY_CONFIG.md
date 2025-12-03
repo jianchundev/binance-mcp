@@ -1,5 +1,52 @@
 # 代理配置指南
 
+## 🚀 快速开始 - 拷贝即用配置
+
+### 默认SOCKS5代理配置（最常用）
+
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@snjyor/binance-mcp@latest"
+  ],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1080"
+  }
+}
+```
+
+### 常见代理端口配置
+
+**Clash/V2Ray (端口7890):**
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": ["-y", "@snjyor/binance-mcp@latest"],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:7890"
+  }
+}
+```
+
+**Shadowsocks (端口1081):**
+```json
+{
+  "key": "binance",
+  "command": "npx",
+  "args": ["-y", "@snjyor/binance-mcp@latest"],
+  "approvalPolicy": "always",
+  "env": {
+    "SOCKS_PROXY": "socks5://127.0.0.1:1081"
+  }
+}
+```
+
 ## 支持的代理类型
 
 本 Binance MCP 服务现在支持以下代理类型：
