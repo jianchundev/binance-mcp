@@ -65,10 +65,10 @@ Through this MCP service, you can obtain the following information:
 
 **Global Installation**
 
-Use npx to run the MCP service:
+Use npx to run the MCP service directly from GitHub:
 
 ```bash
-npx -y @jianchundev/binance-mcp@latest
+npx -y git+https://github.com/jianchundev/binance-mcp.git
 ```
 
 In Cursor IDE:
@@ -78,7 +78,7 @@ In Cursor IDE:
 3. Fill in the form:
    - Name: `binance`
    - Type: `command`
-   - Command: `npx -y @jianchundev/binance-mcp@latest`
+   - Command: `npx -y git+https://github.com/jianchundev/binance-mcp.git`
 
 **Project Installation**
 
@@ -91,7 +91,7 @@ Add a `.cursor/mcp.json` file to your project:
       "command": "npx",
       "args": [
         "-y",
-        "@jianchundev/binance-mcp@latest"
+        "git+https://github.com/jianchundev/binance-mcp.git"
       ]
     }
   }
@@ -159,7 +159,7 @@ After configuration, the Binance market data tools will be automatically availab
   "command": "npx",
   "args": [
     "-y",
-    "@jianchundev/binance-mcp@latest"
+    "git+https://github.com/jianchundev/binance-mcp.git"
   ],
   "approvalPolicy": "always"
 }
@@ -192,7 +192,7 @@ For users who need proxy support, use this ready-to-use configuration:
   "command": "npx",
   "args": [
     "-y",
-    "@jianchundev/binance-mcp@latest"
+    "git+https://github.com/jianchundev/binance-mcp.git"
   ],
   "approvalPolicy": "always",
   "env": {
@@ -213,6 +213,28 @@ For users who need proxy support, use this ready-to-use configuration:
   "SOCKS_PROXY": "socks5://127.0.0.1:7890"
 }
 ```
+
+## 📦 **Installation from GitHub**
+
+This package is distributed directly from GitHub for simplicity and to avoid npm publishing overhead:
+
+```bash
+# Direct run from GitHub
+npx -y git+https://github.com/jianchundev/binance-mcp.git
+
+# Or clone and run locally
+git clone https://github.com/jianchundev/binance-mcp.git
+cd binance-mcp
+npm install
+npm run build
+npm start
+```
+
+**Benefits of GitHub distribution:**
+- 🚀 No npm account required
+- 🔄 Always get the latest version
+- 📝 Full source code transparency
+- ⚡ Faster updates and fixes
 
 ## Proxy Configuration
 

@@ -10,7 +10,7 @@
   "command": "npx",
   "args": [
     "-y",
-    "@jianchundev/binance-mcp@latest"
+    "git+https://github.com/jianchundev/binance-mcp.git"
   ],
   "approvalPolicy": "always",
   "env": {
@@ -26,7 +26,7 @@
 {
   "key": "binance",
   "command": "npx",
-  "args": ["-y", "@jianchundev/binance-mcp@latest"],
+  "args": ["-y", "git+https://github.com/jianchundev/binance-mcp.git"],
   "approvalPolicy": "always",
   "env": {
     "SOCKS_PROXY": "socks5://127.0.0.1:7890"
@@ -39,7 +39,7 @@
 {
   "key": "binance",
   "command": "npx",
-  "args": ["-y", "@jianchundev/binance-mcp@latest"],
+  "args": ["-y", "git+https://github.com/jianchundev/binance-mcp.git"],
   "approvalPolicy": "always",
   "env": {
     "SOCKS_PROXY": "socks5://127.0.0.1:1081"
